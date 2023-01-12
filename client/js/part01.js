@@ -30,8 +30,11 @@ function makeArray(arrayLike) {
 function handler(e) {
   let target = e.target.closest("li");
   // let list = navigation.children;
-  let list = makeArray(navigation.children);
   if (!target) return;
+
+  let list = makeArray(navigation.children);
+  let index = attr(target, "data-index");
+  let visualImage = getNode(".visual > div > img");
 
   /*   for (let li of list) {
     removeClass(li, "is-active");
@@ -39,7 +42,8 @@ function handler(e) {
   list.forEach((item) => removeClass(item, "is-active"));
   addClass(target, "is-active");
 
-  console.log(target);
+  attr(visualImage, "src", `./assets/part01/${data[index - 1].src}`);
+  attr(visualImage, "alt", data[index - 1].alt);
 }
 
 navigation.addEventListener("click", handler);
