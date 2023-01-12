@@ -22,8 +22,24 @@ const data = [
 ];
 
 const navigation = getNode(".navigation");
+// const list = getNodes(".navigation > li");
+function makeArray(arrayLike) {
+  return Array.from(arrayLike);
+}
 
-navigation.onclick = function (e) {
-  let target = e.target;
+function handler(e) {
+  let target = e.target.closest("li");
+  // let list = navigation.children;
+  let list = makeArray(navigation.children);
+  if (!target) return;
+
+  /*   for (let li of list) {
+    removeClass(li, "is-active");
+  } */
+  list.forEach((item) => removeClass(item, "is-active"));
+  addClass(target, "is-active");
+
   console.log(target);
-};
+}
+
+navigation.addEventListener("click", handler);
